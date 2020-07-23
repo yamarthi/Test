@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="1289e13e-815b-44ee-a78a-c7bdb12c44b0" >
+		<file:connection workingDir="C:\Users\windows 10\AnypointStudio\studio-workspace" />
+	</file:config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="95060ecc-c4cb-476e-aae8-e6fe3a01f833" >
+		<http:listener-connection host="localhost" port="8083" />
+	</http:listener-config>
+	<flow name="test-writeFlow" doc:id="a59fdce6-09c4-4b0a-8834-6c7212271c2f" >
+		<http:listener doc:name="Listener" doc:id="2eeb0a27-4079-4cc0-a308-50a5e64185b6" path="/write" config-ref="HTTP_Listener_config"/>
+		<file:write doc:name="Write" doc:id="f80a2c2c-debc-4b36-a981-d763d150a59a" config-ref="File_Config" path="D:\personal\Deloitte\x.txt"/>
+		<logger level="INFO" doc:name="Logger" doc:id="443714b7-1f89-4049-8a56-28159e06e7b1" message="####### done sucessfully#########"/>
+	</flow>
+</mule>
